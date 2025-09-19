@@ -6,7 +6,6 @@ function Get5RandomQuestionFromOpenTBD() {
         method: 'GET',
         success: function (data) {
             var questions = data.results;
-            console.log(questions);
             var htmlResult = `<div class="grid">`;
             for (var i = 0; i < questions.length; i++) {
                 htmlResult += `
@@ -14,7 +13,7 @@ function Get5RandomQuestionFromOpenTBD() {
                         <header> ${questions[i].type.toUpperCase()} </header>
                         <details>
                             <summary>${questions[i].question}</summary>
-                            <p>${questions[i].correct_answer}</p>
+                            <strong>${questions[i].correct_answer}</strong>
                         </details>
                         <footer>
                             ${[...questions[i].incorrect_answers, questions[i].correct_answer].sort(() => Math.random() - 0.5)
@@ -39,7 +38,6 @@ function Get5RandomQuestionFromTheTriviaAPI(){
         url: 'https://the-trivia-api.com/v2/questions?limit=5',
         method: 'GET',
         success: function (data) {
-            console.log(data);
             var htmlResult = `<div class="grid">`;
             for (var i = 0; i < data.length; i++) {
                 htmlResult += `
@@ -47,7 +45,7 @@ function Get5RandomQuestionFromTheTriviaAPI(){
                     <header> ${data[i].type.toUpperCase()} </header>
                         <details>
                             <summary>${data[i].question.text}</summary>
-                            <p>${data[i].correctAnswer}</p>
+                            <strong>${data[i].correctAnswer}</strong>
                         </details>
                         <footer>
                             ${[...data[i].incorrectAnswers, data[i].correctAnswer].sort(() => Math.random() - 0.5)
